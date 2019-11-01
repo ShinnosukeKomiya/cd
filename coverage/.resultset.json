@@ -5,12 +5,67 @@
         1,
         null
       ],
-      "/home/vagrant/environment/cd_app/app/models/user.rb": [
+      "/home/vagrant/environment/cd_app/app/helpers/static_pages_helper.rb": [
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/controllers/static_pages_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/controllers/application_controller.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/card.rb": [
+        1,
         1,
         null
       ],
       "/home/vagrant/environment/cd_app/app/models/application_record.rb": [
         1,
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/cartitem.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/cd.rb": [
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/fav.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/genre.rb": [
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/order.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/ranking.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/stock.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/vagrant/environment/cd_app/app/models/user.rb": [
         1,
         null
       ],
@@ -26,11 +81,6 @@
         0,
         0
       ],
-      "/home/vagrant/environment/cd_app/app/controllers/application_controller.rb": [
-        0,
-        0,
-        0
-      ],
       "/home/vagrant/environment/cd_app/app/jobs/application_job.rb": [
         0,
         0
@@ -42,6 +92,6 @@
         0
       ]
     },
-    "timestamp": 1572431304
+    "timestamp": 1572572511
   }
 }
