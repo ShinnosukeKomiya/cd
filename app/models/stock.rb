@@ -1,3 +1,3 @@
 class Stock < ApplicationRecord
-  belongs_to :cd
+  has_one :cd
 end

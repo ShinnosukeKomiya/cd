@@ -1,4 +1,11 @@
 class User < ApplicationRecord
+  has_many :favs
+  has_many :orders
+  has_many :favcds, through: :favs, source: :cd
+  has_many :cartitems
+  has_many :carts, through: :cartitems, source: :cd
+
+  scope :active, -> { where(deleted: false)}
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
@@ -37,4 +44,30 @@ class User < ApplicationRecord
  def forget
    update_attribute(:remember_digest, nil)
  end
+
+ #カート周りの機能
+ def order(cd)
+ end
+
+ #カート登録判定
+ def  ordered?(cd)
+    self.ordercds.include?(cd)
+ end
+
+ #お気に入り周りの機能
+ def like(cd)
+  favs.find_or_create_by(cd_id: cd.id)
+ end
+
+ def unlike(cd)
+    fav = favs.find_by(cd_id: cd.id)
+    fav.destroy if fav
+ end
+
+ #お気にり登録判定
+ def  favcd?(cd)
+    self.favcds.include?(cd)
+ end
+
+
 end

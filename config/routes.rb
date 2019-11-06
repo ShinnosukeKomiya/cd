@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
   root 'static_pages#home'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get '/search', to:'books#search'
-  resources :users
+  get '/search', to:'cds#search'
+  resources :users do
+    member do
+      get :likes
+    end
+  end
   resources :cds
+  resources :cartitems
+  resources :orders
+  resources :favs, only: [:create, :destroy]
+
 end

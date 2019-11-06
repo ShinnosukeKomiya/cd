@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+before_action :active_user,   only: [:create]
+
 
   def new
   end
@@ -19,4 +21,16 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+
+#beforeアクション
+  def active_user
+    #  byebug
+    # user = User.find_by(email: params[:session][:email].downcase)
+    if User.find_by(email: params[:session][:email].downcase).deleted#user.deleted
+      #log_out
+      redirect_to root_url
+      flash[:danger] = "This account is deleted"
+    end
+  end
+
 end

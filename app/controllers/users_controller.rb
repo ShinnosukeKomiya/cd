@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:show, :edit, :update]
+  before_action :logged_in_user, only: [:show, :edit, :update]
+
 
   def show
     @user = User.find(params[:id])
@@ -35,6 +36,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.deleted = true
+    user.save
+    log_out if logged_in?
+    flash[:success] = "User deleted"
+    redirect_to root_url
+  end
+
+  #お気に入り投稿一覧取得
+  def likes
+    @user = User.find(params[:id])
+    @favs = @user.favcds
+  end
+
  private
 
    def user_params
@@ -44,18 +60,27 @@ class UsersController < ApplicationController
 
    # beforeアクション
 
-    # ログイン済みユーザーかどうか確認
+    # ログイン済みユーザーかつアクティブユーザーかどうか確認
     def logged_in_user
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
+      #if User.active.find_by(params[:id]).nil?
+      #  redirect_to root_url
+      #  flash[:danger] = "This account is deleted"
+      #end
     end
 
     # 正しいユーザーかどうか確認
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end

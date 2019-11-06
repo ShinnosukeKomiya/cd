@@ -1,0 +1,31 @@
+<% provide(:title, 'All cds') %>
+
+<p>検索</p>
+<%= form_tag(search_path,:method => 'get') do %>
+  <%= text_field_tag :search, '', placeholder: "title or artist", class: "", size: 110 %>
+  <%= submit_tag 'Search', :name => nil  %>
+<% end %>
+
+<h1>All cds</h1>
+
+<table class="table" border="1">
+  <tr>
+    <th>タイトル</th>
+    <th>アーティスト</th>
+    <th>アイコン</th>
+  </tr>
+
+<%= will_paginate %>
+
+<ul class="">
+  <% @cds.each do |cd| %>
+    <tr>
+        <td><%= link_to "#{cd.title}", cd, method: :get %></td>
+        <td><%= cd.artist %></td>
+        <td><%= link_to image_tag("#{cd.icon}", alt: "Rails logo") %></td>
+    </tr>
+  <% end %>
+</ul>
+</table>
+
+<%= will_paginate %>
