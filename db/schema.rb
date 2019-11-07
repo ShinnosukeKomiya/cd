@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191106071316) do
+ActiveRecord::Schema.define(version: 20191107055232) do
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "cardnumber"
@@ -22,16 +22,11 @@ ActiveRecord::Schema.define(version: 20191106071316) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
-  create_table "cartitems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "quantity"
-    t.bigint "cd_id"
-    t.bigint "order_id"
+  create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["cd_id"], name: "index_cartitems_on_cd_id"
-    t.index ["order_id"], name: "index_cartitems_on_order_id"
-    t.index ["user_id"], name: "index_cartitems_on_user_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "cds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,12 +59,22 @@ ActiveRecord::Schema.define(version: 20191106071316) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "total"
-    t.bigint "user_id"
+  create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "quantity", default: 1, null: false
+    t.bigint "cart_id", null: false
+    t.bigint "cd_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status", default: false, null: false
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["cd_id"], name: "index_line_items_on_cd_id"
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "total"
+    t.boolean "status"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -101,12 +106,12 @@ ActiveRecord::Schema.define(version: 20191106071316) do
   end
 
   add_foreign_key "cards", "users"
-  add_foreign_key "cartitems", "cds"
-  add_foreign_key "cartitems", "orders"
-  add_foreign_key "cartitems", "users"
+  add_foreign_key "carts", "users"
   add_foreign_key "cds", "stocks"
   add_foreign_key "favs", "cds"
   add_foreign_key "favs", "users"
+  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "cds"
   add_foreign_key "orders", "users"
   add_foreign_key "rankings", "favs"
 end

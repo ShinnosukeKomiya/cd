@@ -1,18 +1,16 @@
 <% provide(:title, "Favorite") %>
-  <p>お気に入り一覧</p>
-    <table class="list" border="1">
-      <tr>
-        <th>タイトル</th>
-        <th>アーティスト</th>
-        <th>アイコン</th>
-      </tr>
-    <% @favs.each do |cd| %>
-      <tr>
-        <td><%= link_to "#{cd.title}", cd, method: :get %></td>
-        <td><%= cd.artist %></td>
-        <td><%= link_to image_tag("#{cd.icon}", alt: "Rails logo") %></td>
-      </tr>
-    <% end %>
-    </table>
+  <h2>お気に入り一覧</h2>
+    <ul>
+      <% @favs.each do |cd| %>
+        <%= link_to image_tag("#{cd.icon}", alt: "Rails logo") %>
+        <li>Item: <%= cd.title %> </li>
+        <li>Price: <%= cd.price %> 円 </li>
+        <ul>
+          <li>
+            <%= link_to "やっぱりこの商品をやめる", line_item_path(line_item), method: :delete %>
+          </li>
+        </ul>
+        <ul>---------------------------------------------------------------------------------------------------</ul>
+      <% end %>
     <%= link_to "Delete(実装する？するとしたらfavをsessionで保持しないとダメ？)", fav_path(@favs), method: :delete,
                         data: { confirm: "You sure?" } %>

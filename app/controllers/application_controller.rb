@@ -3,13 +3,22 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   helper_method :current_cart
-
+  before_action :current_cart
+# アプリケーション全体で活用したいので、このコントローラーに置く
+private
   def current_cart
-    if session[:order_id]
-      @cart = Cartitem.find(session[:order_id])
-    else
-      @cart = Cartitem.create
-      session[:order_id] = @cart.id
+    if session[:cart_id]
+      cart = Cart.find_by(:id => session[:cart_id])
+      if cart.present?
+        @current_cart = cart
+      else
+        session[:cart_id] = nil
+      end
+    end
+
+    if session[:cart_id] == nil
+      @current_cart = Cart.create
+      session[:cart_id] = @current_cart.id
     end
   end
 end

@@ -3,7 +3,7 @@ class FavsController < ApplicationController
     #@cdとはならない
     cd = Cd.find(params[:cd_id])
     current_user.like(cd)
-    created(fav)
+    #created(fav)
     flash[:success] = 'お気に入り登録をしました。'
     redirect_back(fallback_location: root_path)
   end

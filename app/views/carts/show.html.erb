@@ -1,0 +1,26 @@
+<h2>カートの中身</h2>
+<ul>
+  <% @cart.line_items.each do |line_item| %>
+    <%= link_to image_tag("#{line_item.cd.icon}", alt: "Rails logo") %>
+    <li>Item: <%= line_item.cd.title %> </li>
+    <li>Price: <%= line_item.cd.price %> 円 </li>
+    <li>Quantity: <%= line_item.quantity %> </li>
+    <li>Total Price: <%= line_item.total_price %> 円</li>
+
+    <ul>
+      <li>
+        <%= link_to "ふやす", line_item_add_path(:id => line_item), method: :post %>
+        <%= link_to "減らす", line_item_reduce_path(:id => line_item), method: :post %>
+      </li>
+      <li>
+        <%= link_to "やっぱりこの商品をやめる", line_item_path(line_item), method: :delete %>
+      </li>
+    </ul>
+    <ul>---------------------------------------------------------------------------------------------------</ul>
+  <% end %>
+</ul>
+<h3>Sub total: <%= @cart.sub_total %>円</h3>
+
+<%= link_to "お会計に進む", new_order_path %><br>
+#
+<%= link_to "カートを空にする", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>

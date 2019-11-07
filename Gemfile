@@ -18,6 +18,7 @@ gem 'jbuilder',     '2.7.0'
 gem 'pry-byebug'
 gem 'enumerize'
 gem 'activerecord-import'
+gem 'rails_admin', '~> 2.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'

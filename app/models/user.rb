@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :favs
-  has_many :orders
   has_many :favcds, through: :favs, source: :cd
   has_many :cartitems
   has_many :carts, through: :cartitems, source: :cd

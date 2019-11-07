@@ -24,17 +24,14 @@
           </tr>
         </table>
     </section>
-    <%= form_for(current_user.cartitems.build, html: { method: :post }) do |f|  %>
-        <%= f.label :quantity %>
-        <%= f.number_field :quantity, class: 'form-control', min: 1,max: 10 %>
-        <%= hidden_field_tag :cd_id, @cd.id %>
-        <%= f.submit 'カートへ', class: 'btn btn-danger' %>
-    <% end %>
+
+    <%= button_to "カート追加", line_items_path(cd_id: @cd.id), class: 'btn-danger' %>
+
 
     <% if current_user.favcd?(@cd) %>
       <%= form_for(current_user.favs.find_by(cd_id: @cd.id), html: { method: :delete }) do |f| %>
         <%= hidden_field_tag :cd_id, @cd.id %>
-        <%= f.submit 'お気に入り登録解除', class: 'btn btn-danger' %>
+        <%= f.submit 'お気に入り登録解除', class: 'btn-danger' %>
       <% end %>
     <% else %>
       <%= form_for(current_user.favs.build) do |f| %>
@@ -45,6 +42,14 @@
     <% if current_user.admin? && !current_user?(@user) %>
       <%= link_to "編集", edit_cd_path, method: :get %>
       <%= link_to "削除", cd_path, method: :delete, data: { confirm: "You sure?" } %>
+
+      <%= form_for(current_user.cartitems.build, html: { method: :post }) do |f|  %>
+          <%= f.label :quantity %>
+          <%= f.number_field :quantity, class: 'form-control', min: 1,max: 10 %>
+          <%= hidden_field_tag :cd_id, @cd.id %>
+          <%= f.submit 'カートへ', class: 'btn btn-danger' %>
+      <% end %>
+
     <% end %>
   </aside>
 </div>

@@ -1,7 +1,7 @@
 class Cd < ApplicationRecord
   belongs_to :genre
   belongs_to :stock
-  has_many :cartitems
+  has_many :line_items, dependent: :destroy
   has_many :favs
 
   def self.search(search)

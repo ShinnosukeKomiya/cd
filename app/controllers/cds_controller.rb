@@ -25,7 +25,7 @@ class CdsController < ApplicationController
     @cd = Cd.new(cd_params)
     if @cd.save
       flash[:success] = "your cd inserted!"
-      redirect_to action: 'index'
+      redirect_to cds_path
     else
       render 'new'
     end
@@ -35,7 +35,7 @@ class CdsController < ApplicationController
     @cd = Cd.find(params[:id])
     if @cd.update_attributes(cd_params)
       flash[:success] = "cd updated"
-      redirect_to action: 'index'
+      redirect_to cds_path
     else
       render 'show'
     end
