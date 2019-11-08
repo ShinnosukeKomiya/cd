@@ -1,11 +1,13 @@
-#30.times do |n|
-#  id = 1+n
-#  num = rand(10..100)
-#  Stock.create!(
-#    id: id,
-#    num: num
-#  )
-#end
+30.times do |n|
+  id = 1+n
+  num = rand(10..100)
+  cd_id = 1+n
+  Stock.create!(
+    id: id,
+    num: num,
+    cd_id: cd_id
+  )
+end
 
 #30.times do |n|
 #  id = 1+n
@@ -26,20 +28,20 @@
 #  )
 #end
 
-30.times do |n|
-  id = 1+n
-  cd_id = rand(1..30)
-  quantity = rand(1..10)
-  order_id = rand(1..50000)
-  user_id = rand(1..50)
-  Cartitem.create!(
-    id: id,
-    cd_id: cd_id,
-    quantity: quantity,
-    order_id: order_id,
-    user_id: user_id
-  )
-end
+#30.times do |n|
+#  id = 1+n
+#  cd_id = rand(1..30)
+#  quantity = rand(1..10)
+#  order_id = rand(1..50000)
+#  user_id = rand(1..50)
+#  Cartitem.create!(
+#    id: id,
+#    cd_id: cd_id,
+#    quantity: quantity,
+#    order_id: order_id,
+#    user_id: user_id
+#  )
+#end
 
 #30.times do |n|
 #  id = 1+n

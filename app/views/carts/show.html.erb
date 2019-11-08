@@ -5,7 +5,7 @@
     <li>Item: <%= line_item.cd.title %> </li>
     <li>Price: <%= line_item.cd.price %> 円 </li>
     <li>Quantity: <%= line_item.quantity %> </li>
-    <li>Total Price: <%= line_item.total_price %> 円</li>
+    <li>Sub Total: <%= line_item.total_price %> 円</li>
 
     <ul>
       <li>
@@ -19,7 +19,7 @@
     <ul>---------------------------------------------------------------------------------------------------</ul>
   <% end %>
 </ul>
-<h3>Sub total: <%= @cart.sub_total %>円</h3>
+<h3>Total: <%= @cart.sub_total %>円</h3>
 
 <%= link_to "お会計に進む", new_order_path %><br>
 #

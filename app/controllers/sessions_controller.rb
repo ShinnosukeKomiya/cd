@@ -18,6 +18,7 @@ before_action :active_user,   only: [:create]
   end
 
   def destroy
+    session.delete(:cart_id)
     log_out if logged_in?
     redirect_to root_url
   end
@@ -26,10 +27,13 @@ before_action :active_user,   only: [:create]
   def active_user
     #  byebug
     # user = User.find_by(email: params[:session][:email].downcase)
-    if User.find_by(email: params[:session][:email].downcase).deleted#user.deleted
-      #log_out
-      redirect_to root_url
-      flash[:danger] = "This account is deleted"
+    begin
+      if User.find_by(email: params[:session][:email].downcase).deleted#user.deleted
+        #log_out
+        redirect_to root_url
+        flash[:danger] = "This account is deleted"
+      end
+    rescue
     end
   end
 

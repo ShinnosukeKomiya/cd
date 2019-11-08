@@ -45,6 +45,10 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def card
+    @card = Card.new
+  end
+
   #お気に入り投稿一覧取得
   def likes
     @user = User.find(params[:id])

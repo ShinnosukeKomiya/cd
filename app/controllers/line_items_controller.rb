@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
-
+  before_action :current_cart
+  
   def create
     # Find associated cd and current cart
     chosen_cd = Cd.find(params[:cd_id])

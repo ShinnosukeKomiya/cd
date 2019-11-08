@@ -4,19 +4,19 @@
   <%= submit_tag 'Search', :name => nil  %>
 <% end %>
 
-<ul>
-  <table class="table" border="1">
-    <tr>
-      <th>タイトル</th>
-      <th>アーティスト</th>
-      <th>アイコン</th>
-    </tr>
-    <% @cds.each do |cd| %>
+  <ul>
+    <table class="table" border="1">
       <tr>
-          <td><%= link_to "#{cd.title}", cd, method: :get %></td>
-          <td><%= cd.artist %></td>
-          <td><%= link_to image_tag("#{cd.icon}", alt: "Rails logo") %></td>
+        <th>タイトル</th>
+        <th>アーティスト</th>
+        <th>アイコン</th>
       </tr>
-    <% end %>
-  </table>
- </ul>
+      <% @cds.each do |cd| %>
+        <tr>
+            <td><%= link_to "#{cd.title}", cd, method: :get %></td>
+            <td><%= cd.artist %></td>
+            <td><%= link_to image_tag("#{cd.icon}", alt: "Rails logo") %></td>
+        </tr>
+      <% end %>
+    </table>
+   </ul>
