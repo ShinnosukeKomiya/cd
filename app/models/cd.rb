@@ -1,6 +1,7 @@
 class Cd < ApplicationRecord
   belongs_to :genre
   has_one :stock
+  has_one :ranking
   has_many :line_items, dependent: :destroy
   has_many :favs
 

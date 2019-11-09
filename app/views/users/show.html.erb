@@ -8,4 +8,27 @@
       </h1>
     </section>
   </aside>
+
+      <h2>今週のおすすめ商品 TOP3</h2>
+        <table class="table" border="1">
+          <tr>
+            <th>タイトル</th>
+            <th>アーティスト</th>
+            <th>アイコン</th>
+          </tr>
+
+
+        <ul class="">
+          <% @ranks.each do |rank| %>
+            <tr>
+                <td><%= link_to "#{rank.cd.title}", cd_path(rank.cd_id) %></td>
+                <td><%= rank.cd.artist %></td>
+                <td><%= link_to image_tag("#{rank.cd.icon}", alt: "Rails logo") %></td>
+            </tr>
+          <% end %>
+        </ul>
+        </table>
+
+
+
 </div>

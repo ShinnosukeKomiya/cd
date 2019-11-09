@@ -1,0 +1,24 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <% @card = Card.new unless @card %>
+    <%= form_for(@card, url: cards_path) do |f| %>
+
+
+      <%= f.label :name %>
+      <%= f.number_field :cardnumber, class: 'form-control', :placeholder =>"11桁まで" %>
+
+      <%= f.label :duedate %>
+      <%= f.text_field :duedate, class: 'form-control', :placeholder =>"YYMM" %>
+
+      <%= f.label :security %>
+      <%= f.number_field :security, class: 'form-control', :placeholder =>"3文字で" %>
+
+
+
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

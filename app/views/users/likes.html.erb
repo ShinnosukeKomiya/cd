@@ -4,7 +4,7 @@
       <% if @favs %>
         <% @favs.each do |cd| %>
           <%= link_to image_tag("#{cd.icon}", alt: "Rails logo") %>
-          <li>Title: <%= cd.title %> </li>
+          <li>Title: <%= link_to "#{cd.title}", cd_path(cd.id) %> </li>
           <li>Artist: <%= cd.artist %> </li>
 
           <ul>

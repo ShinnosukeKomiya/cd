@@ -12,14 +12,23 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @cart = @current_cart
+    card = Card.find_by(user_id: session[:user_id])
+    if card == nil
+      redirect_to new_card_path
+    end
   end
 
   def create
-     #begin
+    @cart = @current_cart
+    @cart_items = LineItem.where(cart_id: @cart.id)
+    unless @cart_items.present?
+      flash[:danger] = "予期せぬエラー"
+      redirect_to root_path
+    else
+     begin
        ActiveRecord::Base.transaction do
          #そのユーザの買う量を変更できないように
-         @cart = @current_cart
-         @cart_items = LineItem.where(cart_id: @cart.id)
+
          @cart_items.each do |item|
            @stock = Stock.lock.find_by(cd_id: item.cd_id)
            @stock.num -= item.quantity
@@ -33,11 +42,12 @@ class OrdersController < ApplicationController
        end
        flash[:success] = "購入ありがとうございました"
        redirect_to root_path
-     #rescue => e
-#       p "ロールバック"
-#       flash[:notice] = "商品の在庫に変更がありました。ご確認ください"
-#       redirect_to cart_path(current_user)
-     #end
+     rescue => e
+       p "ロールバック"
+       flash[:notice] = "こちらの商品はご希望の数だけストックがありません。"
+       redirect_to cart_path(current_user)
+     end
+    end
    end
 
 private

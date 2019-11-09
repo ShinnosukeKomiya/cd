@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
   end
   resources :cds
+  resources :cards
   resources :orders
   resources :favs, only: [:create, :destroy]
 

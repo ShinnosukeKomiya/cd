@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191108055708) do
+ActiveRecord::Schema.define(version: 20191108111140) do
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "cardnumber"
@@ -78,11 +78,10 @@ ActiveRecord::Schema.define(version: 20191108055708) do
   end
 
   create_table "rankings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "count"
-    t.bigint "fav_id"
+    t.bigint "cd_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["fav_id"], name: "index_rankings_on_fav_id"
+    t.index ["cd_id"], name: "index_rankings_on_cd_id"
   end
 
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -114,6 +113,6 @@ ActiveRecord::Schema.define(version: 20191108055708) do
   add_foreign_key "line_items", "cds"
   add_foreign_key "orders", "cds"
   add_foreign_key "orders", "users"
-  add_foreign_key "rankings", "favs"
+  add_foreign_key "rankings", "cds"
   add_foreign_key "stocks", "cds"
 end
