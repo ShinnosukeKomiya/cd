@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
     @cart = @current_cart
     @cart_items = LineItem.where(cart_id: @cart.id)
     unless @cart_items.present?
-      flash[:danger] = "予期せぬエラー"
+      flash[:danger] = "カートに商品を入れてください"
       redirect_to root_path
     else
      begin
