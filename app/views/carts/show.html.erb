@@ -9,7 +9,9 @@
 
     <ul>
       <li>
+      <% if line_item.cd.stock.num > line_item.quantity %>
         <%= link_to "ふやす", line_item_add_path(:id => line_item), method: :post %>
+      <% end %>
         <%= link_to "減らす", line_item_reduce_path(:id => line_item), method: :post %>
       </li>
       <li>

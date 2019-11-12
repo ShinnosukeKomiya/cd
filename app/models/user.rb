@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_many :favs
   has_many :favcds, through: :favs, source: :cd
-  has_many :cartitems
-  has_many :carts, through: :cartitems, source: :cd
+  has_many :orders
+  has_one :cart
 
   scope :active, -> { where(deleted: false)}
   attr_accessor :remember_token

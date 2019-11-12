@@ -7,18 +7,14 @@
         <li>Quantity: <%= line_item.quantity %> </li>
         <li>Sub total: <%= line_item.total_price %> 円</li>
 
-        <ul>
-          <li>
-            <%= link_to "ふやす", line_item_add_path(:id => line_item), method: :post %>
-            <%= link_to "減らす", line_item_reduce_path(:id => line_item), method: :post %>
-          </li>
-          <li>
-            <%= link_to "やっぱりこの商品をやめる", line_item_path(line_item), method: :delete %>
-          </li>
-        </ul>
         <ul>---------------------------------------------------------------------------------------------------</ul>
       <% end %>
-    </ul>
+</ul>
+
     <h3>Total: <%= @cart.sub_total %>円</h3>
 
     <%= button_to "購入", {controller: 'orders', action: 'create'}, {method: :post} %>
+
+    <li>
+      <%= link_to "カートへ戻る", cart_path(current_user) %>
+    </li>

@@ -1,9 +1,13 @@
 FactoryBot.define do
   factory :cd do
-    title "MyString"
-    artist "MyString"
-    price 1
-    icon "MyString"
-    genre ""
+    title  {'komiya no uta'}
+    artist  {'komiya'}
+    price  {1000}
+    genre
+    icon  {'cd1.png'}
+
+    after(:create) do |cd|
+      create(:stock, cd: cd)
+    end
   end
 end

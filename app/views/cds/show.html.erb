@@ -24,8 +24,11 @@
           </tr>
         </table>
     </section>
-
-    <%= button_to "カート追加", line_items_path(cd_id: @cd.id), class: 'btn-danger' %>
+    <% if @cd.stock.num > 0 %>
+      <%= button_to "カート追加", line_items_path(cd_id: @cd.id), class: 'btn-danger' %>
+    <% else %>
+      <h3>こちらの商品は品切れ状態です。</h3>
+    <% end %>
 
 
     <% if current_user.favcd?(@cd) %>

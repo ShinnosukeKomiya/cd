@@ -96,4 +96,8 @@ RSpec.configure do |config|
 require 'simplecov'
 
 SimpleCov.start 'rails'
+# 以下のコードがないとfeatureスペックで「sign_in_as」が読み込まれないエラー
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
 end

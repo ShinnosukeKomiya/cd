@@ -43,10 +43,10 @@ group :test do
   gem 'rails-controller-testing', '1.0.2'
   gem 'minitest',                 '5.10.3'
   gem 'minitest-reporters',       '1.1.14'
+  gem 'database_cleaner'
   #gem 'guard',                    '2.13.0'
-  gem "faker"
   gem 'guard-minitest',           '2.4.4'
-  gem 'shoulda-matchers',
-    git: 'https://github.com/thoughtbot/shoulda-matchers.git',
-    branch: 'rails-5'
+  gem 'shoulda-matchers',         '2.8.0'
+#    git: 'https://github.com/thoughtbot/shoulda-matchers.git',
+#    branch: 'rails-5'
 end

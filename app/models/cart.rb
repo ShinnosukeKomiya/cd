@@ -1,6 +1,7 @@
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_many :cds, through: :line_items
+  belongs_to :user
 
   # LOGIC
   def sub_total
